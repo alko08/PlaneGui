@@ -28,13 +28,19 @@ public class GameController : MonoBehaviour
                 }
             }
             tick++;
-            if (lookAtPlane || followPlane) {
-                mainCamera.LookAt(planes[0].transform);
 
-                if (followPlane) {
-                    mainCamera.transform.position = planes[0].transform.position + new Vector3(10, 10, 10);
-                }
-            }            
+            if (tick > 200) {
+                launched = false;
+                tick = 0;
+            }          
+        }
+
+        if (lookAtPlane || followPlane) {
+            mainCamera.LookAt(planes[0].transform);
+
+            if (followPlane) {
+                mainCamera.transform.position = planes[0].transform.position + new Vector3(10, 10, 10);
+            }
         }
     }
 
