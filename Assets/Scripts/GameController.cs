@@ -6,6 +6,8 @@ public class GameController : MonoBehaviour
 {
     public GameObject[] planes;
     public Transform mainCamera;
+    public bool lookAtPlane = false, followPlane = false;
+
     private bool launched = false;
     private int tick = 0;
 
@@ -26,11 +28,25 @@ public class GameController : MonoBehaviour
                 }
             }
             tick++;
-            mainCamera.LookAt(planes[0].transform);
+            if (lookAtPlane || followPlane) {
+                mainCamera.LookAt(planes[0].transform);
+
+                if (followPlane) {
+                    mainCamera.transform.position = planes[0].transform.position + new Vector3(10, 10, 10);
+                }
+            }            
         }
     }
 
     public void launchPlanes() {
         launched = true;
+    }
+
+    public void lookAtPlaneButton() {
+        lookAtPlane = !lookAtPlane;
+    }
+
+    public void followPlaneButton() {
+        followPlane = !followPlane;
     }
 }
