@@ -16,7 +16,7 @@ public class PlaneMove : MonoBehaviour
     void Start() {
         rb = gameObject.GetComponent<Rigidbody>();
         trans = gameObject.transform;
-        target = Quaternion.Euler(0, 0, 0);
+        target = Quaternion.Euler(trans.eulerAngles.x, trans.eulerAngles.y, target.eulerAngles.z);
     }
 
     // FixedUpdate is called once per tick

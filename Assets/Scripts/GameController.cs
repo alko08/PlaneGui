@@ -5,9 +5,10 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     public List <PlaneMove> planes;
-    public Transform mainCamera;
+    public Transform mainCamera, jetSpawn, propSpawn, heliSpawn;
     public bool lookAtPlane = false, followPlane = false;
     public GameObject jetPrefab, propPrefab, heliPrefab;
+    
 
 
     // Start is called before the first frame update
@@ -57,17 +58,17 @@ public class GameController : MonoBehaviour
     }
 
     public void createJet() {
-        GameObject jet = Instantiate(jetPrefab, Vector3.zero, transform.rotation);
+        GameObject jet = Instantiate(jetPrefab, jetSpawn.position, jetSpawn.rotation);
         planes.Add(jet.GetComponent<PlaneMove>());
     }
     
     public void createProp() {
-        GameObject prop = Instantiate(propPrefab, Vector3.zero, transform.rotation);
+        GameObject prop = Instantiate(propPrefab, propSpawn.position, propSpawn.rotation);
         planes.Add(prop.GetComponent<PlaneMove>());
     }
     
     public void createHeli() {
-        GameObject heli = Instantiate(heliPrefab, Vector3.zero, transform.rotation);
+        GameObject heli = Instantiate(heliPrefab, heliSpawn.position, heliSpawn.rotation);
         planes.Add(heli.GetComponent<PlaneMove>());
     }
 
