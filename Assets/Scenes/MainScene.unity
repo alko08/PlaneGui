@@ -905,7 +905,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1108221872}
         m_TargetAssemblyTypeName: GameController, Assembly-CSharp
-        m_MethodName: turnRightPlanes
+        m_MethodName: speedUpPlane
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5356,7 +5356,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1108221872}
         m_TargetAssemblyTypeName: GameController, Assembly-CSharp
-        m_MethodName: turnRightPlanes
+        m_MethodName: slowDownPlane
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
