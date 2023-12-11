@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour
     public Transform mainCamera, jetSpawn, propSpawn, heliSpawn;
     public bool lookAtPlane = false, followPlane = false;
     public GameObject jetPrefab, propPrefab, heliPrefab;
+    public int curPlane = 0;
     
 
 
@@ -24,29 +25,23 @@ public class GameController : MonoBehaviour
     void Update() {
         if (lookAtPlane || followPlane) {
             if (followPlane) {
-                mainCamera.transform.position = planes[0].gameObject.transform.position + new Vector3(10, 10, 10);
+                mainCamera.transform.position = planes[curPlane].gameObject.transform.position + new Vector3(10, 10, 10);
             }
 
-            mainCamera.LookAt(planes[0].gameObject.transform);
+            mainCamera.LookAt(planes[curPlane].gameObject.transform);
         }
     }
 
     public void launchPlanes() {
-        for (int i = 0; i < planes.Count; i++) {
-            planes[i].launch();
-        }
+        planes[curPlane].launch();
     }
 
     public void turnRightPlanes() {
-        for (int i = 0; i < planes.Count; i++) {
-            planes[i].turnRight();
-        }
+        planes[curPlane].turnRight();
     }
 
     public void turnLeftPlanes() {
-        for (int i = 0; i < planes.Count; i++) {
-            planes[i].turnLeft();
-        }
+        planes[curPlane].turnLeft();
     }
 
     public void lookAtPlaneButton() {
@@ -72,4 +67,10 @@ public class GameController : MonoBehaviour
         planes.Add(heli.GetComponent<PlaneMove>());
     }
 
+    public void nextPlane() {
+        curPlane++;
+        if (curPlane >= planes.Count) {
+            curPlane = 0;
+        }
+    }
 }
