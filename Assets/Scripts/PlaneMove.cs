@@ -44,6 +44,11 @@ public class PlaneMove : MonoBehaviour
             tick++;
             // Debug.Log(tick);       
         }
+
+        if (trans.position.x < -500 || trans.position.x > 500 || trans.position.z < -500 || trans.position.z > 500) {
+            Vector3 rotation = Quaternion.LookRotation(-trans.position, Vector3.up).eulerAngles;
+            target = Quaternion.Euler(target.eulerAngles.x, rotation.y, target.eulerAngles.z);
+        }
     }
 
     // Update is called once per frame
@@ -68,7 +73,7 @@ public class PlaneMove : MonoBehaviour
         }
     }
 
-     public void turnRight() {
+    public void turnRight() {
         target = Quaternion.Euler(target.eulerAngles.x, target.eulerAngles.y + 90, target.eulerAngles.z);
     }
 
