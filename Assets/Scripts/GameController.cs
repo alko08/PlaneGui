@@ -32,6 +32,14 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public void speedUpPlane() {
+        planes[curPlane].speed += 5;
+    }
+
+    public void slowDownPlane() {
+        planes[curPlane].speed -= 5;
+    }
+
     public void launchPlanes() {
         planes[curPlane].launch();
     }
