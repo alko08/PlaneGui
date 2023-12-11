@@ -54,4 +54,17 @@ public class GameController : MonoBehaviour
     public void followPlaneButton() {
         followPlane = !followPlane;
     }
+
+    public void createJet() {
+
+    }
+    
+    public void createProp() {
+
+    }
+    
+    public void createHeli() {
+
+    }
+
 }
