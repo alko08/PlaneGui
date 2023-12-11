@@ -119,9 +119,11 @@ public class GameController : MonoBehaviour
     }
 
     public void nextPlane() {
-        curPlane++;
-        if (curPlane >= planes.Count) {
-            curPlane = 0;
+        if (curPlane != -1) {
+            curPlane++;
+            if (curPlane >= planes.Count) {
+                curPlane = 0;
+            }
         }
     }
 
