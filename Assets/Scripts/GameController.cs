@@ -160,8 +160,10 @@ public class GameController : MonoBehaviour
     }
 
     public void remove() {
-        Destroy(planes[curPlane].gameObject);
-        planes.RemoveAt(curPlane);
-        backPlane();
+        if (curPlane != -1) {
+            Destroy(planes[curPlane].gameObject);
+            planes.RemoveAt(curPlane);
+            backPlane();
+        }
     }
 }
