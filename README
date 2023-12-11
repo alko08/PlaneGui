@@ -1,0 +1,16 @@
+﻿Aiden Auretto, Alex Koppel, Etai Kurtzman
+
+We started with Aiden Auretto’s final javascript assignment, which was a 2D airplane simulator. We came up with the idea to make a more advanced 3d version in unity. Our initial goal was to add different kinds of vehicles, implementing helicopters as well as different types of planes. We also wanted to give the user more control over the vehicles, allowing them to control the altitude of the plane beyond 3 settings. In the end we were able implement these features, make some nice terrain for the planes to exist in, allow camera controls, and plane generation, and for plane selection. The planes are stored in an array that can be accessed via next and back buttons.
+
+User instructions:
+Open https://alko08.itch.io/plane-gui
+The user can create new planes, control the camera, follow the planes from different perspectives, and make them turn, change altitude, and change speed all via buttons.
+
+Good Parts of GUI:
+We grouped buttons of similar functions together. For example, buttons that make new planes, buttons that control the planes’ movements, and buttons that control the camera are placed together. 
+Button usage is clear, not requiring any major steps to perform any one function.
+No major instructions are required, as the operation of each button is relatively simple.
+
+Code:
+Code can be found here (Assets\Scripts): https://github.com/alko08/PlaneGui
+We have an array of planes (vehicles), and use UI elements that trigger functions inside the GameHandler which edit the vehicles, camera, and overall environment. There are 3 separate classes of vehicles, a prop plane, a jet, and a helicopter.

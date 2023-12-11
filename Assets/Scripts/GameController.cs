@@ -9,7 +9,7 @@ public class GameController : MonoBehaviour
     public GameObject jetPrefab, propPrefab, heliPrefab;
     public TMPro.TextMeshProUGUI count, up, down;
 
-    private bool lookAtPlane = true, followPlane = false, firstPerson = false;
+    private bool lookAtPlane = true, followPlane = false, firstPerson = false, paused = false;
     private int curPlane = 0;
     
 
@@ -25,36 +25,38 @@ public class GameController : MonoBehaviour
     // }
 
     void Update() {
-        if (lookAtPlane || followPlane || firstPerson) {
-            if (followPlane) {
-                mainCamera.transform.position = planes[curPlane].gameObject.transform.GetChild(0).position;
-            } else if (firstPerson) {
-                Vector3 followAdjust = -10 * (planes[curPlane].transform.forward) + new Vector3(0f, 1f, 0f);
-                mainCamera.transform.position = planes[curPlane].gameObject.transform.position + followAdjust;
+        if (curPlane != -1) {
+            if (lookAtPlane || followPlane || firstPerson) {
+                if (followPlane) {
+                    mainCamera.transform.position = planes[curPlane].gameObject.transform.GetChild(0).position;
+                } else if (firstPerson) {
+                    Vector3 followAdjust = -10 * (planes[curPlane].transform.forward) + new Vector3(0f, 1f, 0f);
+                    mainCamera.transform.position = planes[curPlane].gameObject.transform.position + followAdjust;
+                }
+
+                mainCamera.LookAt(planes[curPlane].gameObject.transform);
             }
 
-            mainCamera.LookAt(planes[curPlane].gameObject.transform);
-        }
+            count.text = "" + curPlane;
 
-        count.text = "" + curPlane;
-
-        if (planes[curPlane].isHeli) {
-            up.text = "Forward";
-            down.text = "Back";
-        } else {
-            up.text = "Up";
-            down.text = "Down";
+            if (planes[curPlane].isHeli) {
+                up.text = "Forward";
+                down.text = "Back";
+            } else {
+                up.text = "Up";
+                down.text = "Down";
+            }
         }
     }
 
     public void speedUpPlane() {
-        if (planes[curPlane].launched) {
+        if (curPlane != -1 && planes[curPlane].launched) {
             planes[curPlane].speed += 5;
         }
     }
 
     public void slowDownPlane() {
-        if (planes[curPlane].launched) {
+        if (curPlane != -1 && planes[curPlane].launched) {
             planes[curPlane].speed -= 5;
             if (!planes[curPlane].isHeli && planes[curPlane].speed < 0) {
                 planes[curPlane].speed = 0;
@@ -63,15 +65,21 @@ public class GameController : MonoBehaviour
     }
 
     public void launchPlane() {
-        planes[curPlane].launch();
+        if (curPlane != -1) {
+            planes[curPlane].launch();
+        }
     }
 
     public void turnRight() {
-        planes[curPlane].turnRight();
+        if (curPlane != -1) {
+            planes[curPlane].turnRight();   
+        }
     }
 
     public void turnLeft() {
-        planes[curPlane].turnLeft();
+        if (curPlane != -1) {
+            planes[curPlane].turnLeft();   
+        }
     }
 
     public void lookAtPlaneButton() {
@@ -125,14 +133,35 @@ public class GameController : MonoBehaviour
     }
 
     public void turnUp() {
-        planes[curPlane].moveUp();
+        if (curPlane != -1) {
+            planes[curPlane].moveUp();   
+        }
     }
 
     public void turnDown() {
-        planes[curPlane].moveDown();
+        if (curPlane != -1) {
+            planes[curPlane].moveDown();   
+        }
     }
 
     public void reset() {
-        planes[curPlane].reset();
+        if (curPlane != -1) {
+            planes[curPlane].reset();   
+        }
+    }
+
+    public void pause() {
+        paused = !paused;
+        if (paused) {
+            Time.timeScale = 0f;
+        } else {
+            Time.timeScale = 1f;
+        }
+    }
+
+    public void remove() {
+        Destroy(planes[curPlane].gameObject);
+        planes.RemoveAt(curPlane);
+        backPlane();
     }
 }

@@ -41,7 +41,7 @@ public class PlaneMove : MonoBehaviour
                 }
             } else {
                 if (tick <= 100) {
-                    rb.AddForce(transform.up * 9.8f);
+                    // rb.AddForce(transform.up * 9.8f);
                 } else if (100 < tick && tick < 300) {
                     rb.AddForce(transform.up * speed);
                 } else if (tick == 300) {
@@ -118,8 +118,10 @@ public class PlaneMove : MonoBehaviour
     }
 
     IEnumerator readyToLaunch() {
-        yield return new WaitUntil(() => trans.rotation == target); 
-        launched = true;
+        yield return new WaitUntil(() => trans.rotation == target);
+        if (target == Quaternion.Euler(0, 0, 0)) {
+            launched = true;
+        }
     }
 
     IEnumerator startHeli() {
@@ -175,5 +177,6 @@ public class PlaneMove : MonoBehaviour
         }
         trans.rotation = target;
         trans.position = targetLaunch;
+        rb.velocity = Vector3.zero;
     }
 }
