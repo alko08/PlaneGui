@@ -98,8 +98,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
-  turnSpeed: 2
-  launched: 0
+  turnSpeed: 1.5
+  isHeli: 0
+  targetLaunch: {x: 0.25, y: 0.31, z: -1.72}
 --- !u!1001 &6249378072072385742
 PrefabInstance:
   m_ObjectHideFlags: 0

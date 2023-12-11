@@ -33,7 +33,7 @@ public class GameController : MonoBehaviour
 
     public void launchPlanes() {
         for (int i = 0; i < planes.Count; i++) {
-            planes[i].launched = true;
+            planes[i].launch();
         }
     }
 
