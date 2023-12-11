@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    public PlaneMove[] planes;
+    public List <PlaneMove> planes;
     public Transform mainCamera;
     public bool lookAtPlane = false, followPlane = false;
+    public GameObject jetPrefab, propPrefab, heliPrefab;
 
 
     // Start is called before the first frame update
@@ -30,19 +31,19 @@ public class GameController : MonoBehaviour
     }
 
     public void launchPlanes() {
-        for (int i = 0; i < planes.Length; i++) {
+        for (int i = 0; i < planes.Count; i++) {
             planes[i].launched = true;
         }
     }
 
     public void turnRightPlanes() {
-        for (int i = 0; i < planes.Length; i++) {
+        for (int i = 0; i < planes.Count; i++) {
             planes[i].turnRight();
         }
     }
 
     public void turnLeftPlanes() {
-        for (int i = 0; i < planes.Length; i++) {
+        for (int i = 0; i < planes.Count; i++) {
             planes[i].turnLeft();
         }
     }
@@ -56,15 +57,18 @@ public class GameController : MonoBehaviour
     }
 
     public void createJet() {
-
+        GameObject jet = Instantiate(jetPrefab, Vector3.zero, transform.rotation);
+        planes.Add(jet.GetComponent<PlaneMove>());
     }
     
     public void createProp() {
-
+        GameObject prop = Instantiate(propPrefab, Vector3.zero, transform.rotation);
+        planes.Add(prop.GetComponent<PlaneMove>());
     }
     
     public void createHeli() {
-
+        GameObject heli = Instantiate(heliPrefab, Vector3.zero, transform.rotation);
+        planes.Add(heli.GetComponent<PlaneMove>());
     }
 
 }

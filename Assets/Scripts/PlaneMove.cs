@@ -16,13 +16,13 @@ public class PlaneMove : MonoBehaviour
     void Start() {
         rb = gameObject.GetComponent<Rigidbody>();
         trans = gameObject.transform;
-        target = trans.rotation;
+        target = Quaternion.Euler(0, 0, 0);
     }
 
     // FixedUpdate is called once per tick
     void FixedUpdate() {
         if (launched) {
-            rb.AddForce(trans.forward * 30);
+            rb.AddForce(trans.forward * speed);
             if (100 < tick && tick < 300) {
                 rb.AddForce(transform.up * 12);
                 target = Quaternion.Euler(-15, target.eulerAngles.y, target.eulerAngles.z);
